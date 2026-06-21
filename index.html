@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Distrito Barber Club · Barbería Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --mid-gray: #2d2d2d;
+            --light-gray: #3d3d3d;
+            --gold: #c9a84c;
+            --gold-light: #e4c97a;
+            --gold-dark: #a8892e;
+            --white: #f5f0eb;
+            --text-light: #e0d6cc;
+            --shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--black);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 700;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text-light);
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        .gold-line {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0.5rem auto 2rem auto;
+            border-radius: 4px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-gold {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--black);
+            font-weight: 600;
+            padding: 14px 40px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(201, 168, 76, 0.35);
+        }
+        .btn-gold:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 35px rgba(201, 168, 76, 0.5);
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+        }
+        .btn-gold i {
+            margin-right: 10px;
+        }
+
+        .btn-outline-gold {
+            display: inline-block;
+            background: transparent;
+            color: var(--gold);
+            font-weight: 600;
+            padding: 12px 34px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.85rem;
+            border: 2px solid var(--gold);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-outline-gold:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(201, 168, 76, 0.3);
+        }
+
+        /* ===== HEADER / NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px 0;
+            z-index: 1000;
+            background: transparent;
+            transition: var(--transition);
+        }
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 10px 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+        }
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+        .logo span {
+            color: var(--white);
+            font-weight: 300;
+        }
+        .logo:hover {
+            transform: scale(1.03);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.2rem;
+            align-items: center;
+        }
+        .nav-menu a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            transition: var(--transition);
+            position: relative;
+            padding: 4px 0;
+        }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+        .nav-menu a:hover {
+            color: var(--gold);
+        }
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        .nav-menu a.active {
+            color: var(--gold);
+        }
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--black) !important;
+            padding: 8px 22px !important;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            transition: var(--transition);
+        }
+        .nav-cta::after {
+            display: none !important;
+        }
+        .nav-cta:hover {
+            background: var(--gold-light);
+            transform: scale(1.05);
+            color: var(--black) !important;
+        }
+
+        /* Hamburguesa */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 6px;
+            background: transparent;
+            border: none;
+            z-index: 1001;
+        }
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 2.5px;
+            background: var(--gold);
+            border-radius: 4px;
+            transition: var(--transition);
+            transform-origin: center;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--black);
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                linear-gradient(135deg, rgba(10, 10, 10, 0.75) 0%, rgba(10, 10, 10, 0.45) 100%),
+                url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            background-attachment: fixed;
+            transform: scale(1.02);
+            transition: transform 0.6s ease;
+        }
+        .hero:hover .hero-bg {
+            transform: scale(1);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeUp 1.2s ease forwards;
+        }
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content .badge {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.15);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 6px 24px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 6.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .hero-content h1 .gold-text {
+            color: var(--gold);
+            display: inline-block;
+        }
+        .hero-content p {
+            font-size: clamp(1rem, 1.4vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 1.2rem auto 2.2rem auto;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            line-height: 1.7;
+        }
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .hero-buttons .btn-gold i {
+            margin-right: 10px;
+        }
+
+        /* ===== SOBRE NOSOTROS ===== */
+        .about {
+            padding: 80px 0 60px 0;
+            background: var(--dark-gray);
+            border-top: 1px solid rgba(201, 168, 76, 0.08);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .about-text p {
+            color: var(--text-light);
+            opacity: 0.85;
+            margin-bottom: 1.2rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        .about-text .signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--gold);
+            opacity: 0.7;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        .about-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+        .about-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid rgba(201, 168, 76, 0.2);
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        /* ===== SERVICIOS ===== */
+        .services {
+            padding: 80px 0;
+            background: var(--black);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        .service-card {
+            background: var(--dark-gray);
+            padding: 2.8rem 1.8rem 2.2rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(201, 168, 76, 0.08);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(201, 168, 76, 0.3);
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5);
+        }
+        .service-card .icon {
+            font-size: 3.2rem;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+            display: inline-block;
+            transition: var(--transition);
+        }
+        .service-card:hover .icon {
+            transform: scale(1.1) rotate(-2deg);
+        }
+        .service-card h3 {
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.5px;
+        }
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            font-weight: 300;
+        }
+        .service-card .price {
+            display: inline-block;
+            margin-top: 0.8rem;
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            border-top: 1px solid rgba(201, 168, 76, 0.15);
+            padding-top: 0.8rem;
+            width: 80%;
+        }
+
+        /* ===== GALERÍA CARRUSEL ===== */
+        .gallery {
+            padding: 80px 0;
+            background: var(--dark-gray);
+            border-top: 1px solid rgba(201, 168, 76, 0.06);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.06);
+        }
+        .carousel-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .carousel-slide {
+            min-width: 100%;
+            aspect-ratio: 16/9;
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(6px);
+            color: var(--gold);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            border-color: var(--gold);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .carousel-btn.prev {
+            left: 16px;
+        }
+        .carousel-btn.next {
+            right: 16px;
+        }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+        .carousel-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--mid-gray);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .carousel-dots span.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+        }
+        .carousel-dots span:hover {
+            background: var(--gold-light);
+        }
+
+        /* ===== TESTIMONIOS ===== */
+        .testimonials {
+            padding: 80px 0;
+            background: var(--black);
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        .testimonial-card {
+            background: var(--dark-gray);
+            padding: 2.2rem 1.8rem;
+            border-radius: 16px;
+            border: 1px solid rgba(201, 168, 76, 0.06);
+            transition: var(--transition);
+            position: relative;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(201, 168, 76, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+        .testimonial-card .quote {
+            font-size: 2.6rem;
+            color: var(--gold);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: -0.8rem;
+        }
+        .testimonial-card p {
+            font-style: italic;
+            font-weight: 300;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin: 0.6rem 0 1.2rem;
+        }
+        .testimonial-card .client {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .testimonial-card .client img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold);
+        }
+        .testimonial-card .client-info h4 {
+            color: var(--white);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .testimonial-card .client-info span {
+            color: var(--gold);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        .testimonial-card .stars {
+            color: var(--gold);
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+        }
+
+        /* ===== UBICACIÓN ===== */
+        .location {
+            padding: 80px 0 60px;
+            background: var(--dark-gray);
+            border-top: 1px solid rgba(201, 168, 76, 0.06);
+        }
+        .location .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .location-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+        }
+        .location-info p {
+            color: var(--text-light);
+            opacity: 0.8;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 300;
+        }
+        .location-info p i {
+            color: var(--gold);
+            width: 24px;
+            font-size: 1.1rem;
+        }
+        .location-info .hours {
+            margin-top: 1.8rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid rgba(201, 168, 76, 0.1);
+        }
+        .location-info .hours h4 {
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.5px;
+        }
+        .location-info .hours p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        .map-container {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(201, 168, 76, 0.1);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 360px;
+            border: none;
+            filter: grayscale(0.2) invert(0.05);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--black);
+            padding: 50px 0 30px;
+            border-top: 1px solid rgba(201, 168, 76, 0.08);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+        }
+        .footer-brand .logo {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+        }
+        .footer-brand p {
+            color: var(--text-light);
+            opacity: 0.6;
+            font-weight: 300;
+            max-width: 300px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.2rem;
+        }
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--dark-gray);
+            color: var(--text-light);
+            transition: var(--transition);
+            border: 1px solid rgba(201, 168, 76, 0.1);
+        }
+        .footer-social a:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            border-color: var(--gold);
+            box-shadow: 0 6px 20px rgba(201, 168, 76, 0.25);
+        }
+        .footer h4 {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+        .footer-links a {
+            display: block;
+            color: var(--text-light);
+            opacity: 0.6;
+            font-weight: 300;
+            font-size: 0.9rem;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+        .footer-links a:hover {
+            color: var(--gold);
+            opacity: 1;
+            padding-left: 6px;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(201, 168, 76, 0.06);
+            padding-top: 1.8rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            opacity: 0.4;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== WHATSAPP FLOTANTE ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
+            background: #25d366;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            text-decoration: none;
+            animation: pulse-wa 2.5s infinite;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.12) rotate(-4deg);
+            box-shadow: 0 10px 45px rgba(37, 211, 102, 0.55);
+            color: #fff;
+        }
+        @keyframes pulse-wa {
+            0% {
+                box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 50px rgba(37, 211, 102, 0.7);
+            }
+            100% {
+                box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4);
+            }
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .about-grid {
+                gap: 2.5rem;
+            }
+            .location .container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .map-container iframe {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 820px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 340px;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                padding: 2rem;
+                transition: right 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+                border-left: 1px solid rgba(201, 168, 76, 0.1);
+            }
+            .nav-menu.open {
+                right: 0;
+            }
+            .nav-menu a {
+                font-size: 1.1rem;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .nav-cta {
+                background: var(--gold);
+                color: var(--black) !important;
+                padding: 10px 32px !important;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .about-image img {
+                height: 280px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .footer-brand p {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-gold,
+            .btn-outline-gold {
+                width: 100%;
+                text-align: center;
+                padding: 14px 20px;
+            }
+            .carousel-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+            .carousel-btn.prev {
+                left: 8px;
+            }
+            .carousel-btn.next {
+                right: 8px;
+            }
+            .whatsapp-float {
+                width: 52px;
+                height: 52px;
+                font-size: 1.8rem;
+                bottom: 18px;
+                right: 18px;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+            .service-card {
+                padding: 1.8rem 1rem 1.5rem;
+            }
+            .service-card .icon {
+                font-size: 2.4rem;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+        <div class="container">
+            <a href="#hero" class="logo">Distrito<span>Barber</span></a>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li role="none"><a href="#about" role="menuitem">Nosotros</a></li>
+                <li role="none"><a href="#services" role="menuitem">Servicios</a></li>
+                <li role="none"><a href="#gallery" role="menuitem">Galería</a></li>
+                <li role="none"><a href="#testimonials" role="menuitem">Testimonios</a></li>
+                <li role="none"><a href="#location" role="menuitem">Ubicación</a></li>
+                <li role="none"><a href="#contact" class="nav-cta" role="menuitem">Agendar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="badge"><i class="fas fa-scissors" style="margin-right:8px;"></i> Est. 2026</div>
+            <h1>Estilo &amp; <span class="gold-text">Distinción</span></h1>
+            <p>Donde la tradición de la barbería se encuentra con la vanguardia. Cortes precisos, barbas impecables y una experiencia que trasciende lo ordinario.</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/573001234567?text=Hola%20Distrito%20Barber%20Club%2C%20quiero%20agendar%20una%20cita" target="_blank" class="btn-gold">
+                    <i class="fab fa-whatsapp"></i> Agendar vía WhatsApp
+                </a>
+                <a href="#services" class="btn-outline-gold">Ver servicios</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <h2>Más que una barbería</h2>
+                    <p>
+                        En <strong>Distrito Barber Club</strong> transformamos cada visita en un ritual de cuidado personal.
+                        Nuestros barberos son artistas de la tijera y la navaja, formados en las mejores técnicas
+                        tradicionales y las tendencias más actuales.
+                    </p>
+                    <p>
+                        Utilizamos productos premium, ambientamos con música seleccionada y creamos un espacio
+                        donde el lujo y la cercanía se dan la mano. Porque el verdadero estilo comienza con
+                        sentirse bien.
+                    </p>
+                    <div class="signature">— Distrito Barber Club</div>
+                </div>
+                <div class="about-image reveal">
+                    <img src="https://images.unsplash.com/photo-1599351431205-1ba8f37e76c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Interior de Distrito Barber Club" loading="lazy" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title reveal">Servicios</h2>
+            <div class="gold-line"></div>
+            <p class="section-subtitle reveal">Cada servicio está pensado para realzar tu estilo con la máxima calidad y atención al detalle.</p>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="icon"><i class="fas fa-cut"></i></div>
+                    <h3>Corte de Cabello</h3>
+                    <p>Clásico, moderno o personalizado. Nuestros barberos dominan todas las técnicas.</p>
+                    <span class="price">Desde $35.000</span>
+                </div>
+                <div class="service-card reveal">
+                    <div class="icon"><i class="fas fa-razor"></i></div>
+                    <h3>Afeitado &amp; Barba</h3>
+                    <p>Afeitado tradicional con navaja, perfilado y mantenimiento de barba con productos premium.</p>
+                    <span class="price">Desde $28.000</span>
+                </div>
+                <div class="service-card reveal">
+                    <div class="icon"><i class="fas fa-wind"></i></div>
+                    <h3>Tratamiento Capilar</h3>
+                    <p>Hidratación profunda, masaje y revitalización para un cabello saludable y brillante.</p>
+                    <span class="price">Desde $40.000</span>
+                </div>
+                <div class="service-card reveal">
+                    <div class="icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Combo Ejecutivo</h3>
+                    <p>Corte + Barba + Tratamiento. La experiencia completa para el hombre moderno.</p>
+                    <span class="price">Desde $75.000</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY / CARRUSEL ===== -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2 class="section-title reveal">Galería</h2>
+            <div class="gold-line"></div>
+            <p class="section-subtitle reveal">Un vistazo a nuestro trabajo y ambiente.</p>
+            <div class="carousel-container reveal">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Barbería Distrito Club" loading="lazy" />
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Corte de cabello" loading="lazy" />
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1567894340319-2a701b8b9ae6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Afeitado tradicional" loading="lazy" />
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1599351431205-1ba8f37e76c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Interior barbería" loading="lazy" />
+                    </div>
+                </div>
+                <button class="carousel-btn prev" id="prevBtn" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn next" id="nextBtn" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIOS ===== -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title reveal">Lo que dicen nuestros clientes</h2>
+            <div class="gold-line"></div>
+            <p class="section-subtitle reveal">La opinión de quienes confían en nosotros día a día.</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="quote"><i class="fas fa-quote-left"></i></div>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"El mejor corte que me han hecho. Atención de primera, ambiente único y un resultado impecable. Volveré siempre."</p>
+                    <div class="client">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Cliente" loading="lazy" />
+                        <div class="client-info">
+                            <h4>Andrés Martínez</h4>
+                            <span>Cliente frecuente</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="quote"><i class="fas fa-quote-left"></i></div>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"El trato es excepcional, se nota la pasión por lo que hacen. Mi barba nunca había lucido tan bien. 100% recomendado."</p>
+                    <div class="client">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Cliente" loading="lazy" />
+                        <div class="client-info">
+                            <h4>Carlos Restrepo</h4>
+                            <span>Cliente habitual</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="quote"><i class="fas fa-quote-left"></i></div>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Un espacio con mucha personalidad, música excelente y barberos que saben escuchar. El combo ejecutivo es una maravilla."</p>
+                    <div class="client">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Cliente" loading="lazy" />
+                        <div class="client-info">
+                            <h4>David Rincón</h4>
+                            <span>Cliente desde 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== UBICACIÓN ===== -->
+    <section class="location" id="location">
+        <div class="container">
+            <div class="location-info reveal">
+                <h3><i class="fas fa-map-pin" style="color:var(--gold); margin-right:10px;"></i> Encuéntranos</h3>
+                <p><i class="fas fa-location-dot"></i> Calle 85 # 12 - 34, Chapinero, Bogotá</p>
+                <p><i class="fas fa-phone"></i> +57 300 123 4567</p>
+                <p><i class="fas fa-envelope"></i> info@distritobarberclub.com</p>
+                <div class="hours">
+                    <h4><i class="fas fa-clock" style="color:var(--gold); margin-right:8px;"></i> Horario de atención</h4>
+                    <p>Lunes a Sábado: 9:00 AM – 8:00 PM</p>
+                    <p>Domingos: 10:00 AM – 5:00 PM</p>
+                </div>
+            </div>
+            <div class="map-container reveal">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.785140536699!2d-74.066294!3d4.655043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9b3b1b1b1b1b%3A0x1b1b1b1b1b1b1b1b!2sChapinero%2C%20Bogot%C3%A1!5e0!3m2!1ses!2sco!4v1740000000000" loading="lazy" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#hero" class="logo">Distrito<span>Barber</span></a>
+                    <p>La barbería donde el estilo y la tradición se encuentran. Cortes precisos, barbas perfectas y una experiencia única.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Enlaces rápidos</h4>
+                    <a href="#about">Nosotros</a>
+                    <a href="#services">Servicios</a>
+                    <a href="#gallery">Galería</a>
+                    <a href="#testimonials">Testimonios</a>
+                    <a href="#location">Ubicación</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Servicios</h4>
+                    <a href="#services">Corte de Cabello</a>
+                    <a href="#services">Afeitado &amp; Barba</a>
+                    <a href="#services">Tratamiento Capilar</a>
+                    <a href="#services">Combo Ejecutivo</a>
+                    <a href="#services">Cepillado &amp; Peinado</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 <strong>Distrito Barber Club</strong> · Todos los derechos reservados · Hecho con <i class="fas fa-heart" style="color:var(--gold);"></i> para los hombres de estilo.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== WHATSAPP FLOTANTE ===== -->
+    <a href="https://wa.me/573001234567?text=Hola%20Distrito%20Barber%20Club%2C%20quiero%20agendar%20una%20cita" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ---- NAVBAR SCROLL ----
+            const navbar = document.getElementById('navbar');
+            let lastScroll = 0;
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > 60) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                lastScroll = currentScroll;
+            });
+
+            // ---- HAMBURGER MENU ----
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+
+            function toggleMenu() {
+                const isOpen = navMenu.classList.toggle('open');
+                hamburger.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded', isOpen);
+            }
+
+            hamburger.addEventListener('click', toggleMenu);
+
+            // Cerrar menú al hacer clic en un enlace
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('open')) {
+                        navMenu.classList.remove('open');
+                        hamburger.classList.remove('active');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+
+            // ---- CARRUSEL ----
+            const track = document.getElementById('carouselTrack');
+            const slides = track.querySelectorAll('.carousel-slide');
+            const totalSlides = slides.length;
+            let currentIndex = 0;
+            let autoPlayInterval;
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('carouselDots');
+
+            // Crear dots
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('span');
+                dot.dataset.index = i;
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+
+            const dots = dotsContainer.querySelectorAll('span');
+
+            function goToSlide(index) {
+                if (index < 0) index = totalSlides - 1;
+                if (index >= totalSlides) index = 0;
+                currentIndex = index;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+
+            function prevSlide() {
+                goToSlide(currentIndex - 1);
+            }
+
+            prevBtn.addEventListener('click', () => {
+                clearInterval(autoPlayInterval);
+                prevSlide();
+                startAutoPlay();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                clearInterval(autoPlayInterval);
+                nextSlide();
+                startAutoPlay();
+            });
+
+            function startAutoPlay() {
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = setInterval(nextSlide, 4500);
+            }
+
+            startAutoPlay();
+
+            // Pausar autoplay al pasar el mouse
+            const carouselContainer = document.querySelector('.carousel-container');
+            carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+            carouselContainer.addEventListener('mouseleave', startAutoPlay);
+
+            // ---- SCROLL REVEAL ----
+            const revealElements = document.querySelectorAll('.reveal');
+
+            function checkReveal() {
+                const windowHeight = window.innerHeight;
+                revealElements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    const revealPoint = 120;
+                    if (rect.top < windowHeight - revealPoint) {
+                        el.classList.add('visible');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkReveal);
+            window.addEventListener('load', checkReveal);
+
+            // ---- ACTIVE NAV LINK ON SCROLL ----
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-menu a:not(.nav-cta)');
+
+            function updateActiveLink() {
+                let currentSection = '';
+                const scrollPos = window.pageYOffset + 120;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+            window.addEventListener('load', updateActiveLink);
+
+        })();
+    </script>
+
+</body>
+</html>
